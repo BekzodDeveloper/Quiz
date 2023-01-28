@@ -6,11 +6,11 @@ import LoadingIMG from "./images/loading-gif.gif";
 import {AnswerType, dataCapitalMarket, ex, QuestionItemType, QuestionState, QuestionType} from "./state/state";
 import {shuffleArray} from "./utils";
 import {QuestionCardComponent} from "./components/QuestionCardComponent";
-import {log} from "util";
+import {keyboardKey} from "@testing-library/user-event";
 
 
 const TOTAL_QUESTIONS = 50;
-const myJson=false;
+const concatToJSON: boolean = false;
 
 const App = () => {
 
@@ -22,7 +22,7 @@ const App = () => {
     const [gameOver, setGameOver] = useState(true);
 
 
-    const startTrivia = async () => {
+    const startExamQuiz = async () => {
         setLoading(true)
         setGameOver(false)
 
@@ -33,7 +33,6 @@ const App = () => {
         })));
 
         setQuestions(newQuestions);
-
 
         setScore(0)
         setUserAnswers([])
@@ -69,29 +68,27 @@ const App = () => {
     }
 
 
+    // function sliceArray(array: Array<string>) {
+    //
+    //     let size:number = 5;
+    //     let subarray:Array<Array<string>> = [];// [ [string,string ], [ ], ]
+    //     for (let i = 0; i < Math.ceil(array.length / size); i++) {
+    //         subarray[i] = array.slice((i * size), (i * size) + size);
+    //     }
+    //     const objs: Array<QuestionType> = subarray.map(sub => (
+    //         {
+    //             category: "CAPITAL MARKET",
+    //             type: "multiple",
+    //             difficulty: "easy",
+    //             question: sub[0],
+    //             correct_answer: sub[1],
+    //             incorrect_answers: [sub[2], sub[3], sub[4]]
+    //         }
+    //     ))
+    //     return objs;
+    // }
 
-    function sliceArray(array: Array<string>) {
-
-        let size = 5;
-        let subarray = [];
-        for (let i = 0; i < Math.ceil(array.length / size); i++) {
-            subarray[i] = array.slice((i * size), (i * size) + size);
-        }
-        const objs = subarray.map(sub => (
-            {
-                category: "CAPITAL MARKET",
-                type: "multiple",
-                difficulty: "easy",
-                question: sub[0],
-                correct_answer: sub[1],
-                incorrect_answers: [sub[2], sub[3], sub[4]]
-            }
-        ))
-        return objs;
-    }
-
-    const questionArrays = sliceArray(ex.questions);
-
+    // const questionArrays:Array<QuestionType> = sliceArray(ex.questions);
 
 
     return (<>
@@ -99,7 +96,7 @@ const App = () => {
             <Wrapper>
                 <h1>{dataCapitalMarket.questions[0].category}</h1>
                 {gameOver || userAnswers.length === TOTAL_QUESTIONS
-                    ? <button className='start' onClick={startTrivia}>Старт</button>
+                    ? <button className='start' onClick={startExamQuiz}>Старт</button>
                     : null}
 
 
@@ -127,20 +124,19 @@ const App = () => {
                     <button className='next' onClick={nextQuestion}>Следующий вопрос</button>
                 }
             </Wrapper>
-            {myJson && questionArrays.map(myQ => {
+            {/*{concatToJSON && questionArrays.map(myQ => {*/}
+            {/*    return <p key={myQ.question}>*/}
+            {/*        {`{`}*/}
+            {/*        category: "{myQ.category}",*/}
+            {/*        type: "{myQ.type}",*/}
+            {/*        difficulty: "{myQ.difficulty}",*/}
+            {/*        question: "{myQ.question}",*/}
+            {/*        correct_answer: "{myQ.correct_answer}",*/}
+            {/*        incorrect_answers: [{myQ.incorrect_answers.map(ia => `"${ia}",`)}]*/}
+            {/*        {`},`}*/}
+            {/*    </p>*/}
 
-                return <p key={myQ.question}>
-                    {`{`}
-                    category: "{myQ.category}",
-                    type: "{myQ.type}",
-                    difficulty: "{myQ.difficulty}",
-                    question: "{myQ.question}",
-                    correct_answer: "{myQ.correct_answer}",
-                    incorrect_answers: [{myQ.incorrect_answers.map(ia => `"${ia}",`)}]
-                    {`},`}
-                </p>
-
-            })}
+            {/*})}*/}
         </>
     );
 }

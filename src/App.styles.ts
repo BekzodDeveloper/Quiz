@@ -3,7 +3,7 @@ import styled, {createGlobalStyle} from "styled-components";
 
  export const GlobalStyle = createGlobalStyle`
    html {
-     height: 100%;
+     min-height: 100%;
    }
 
    body {
@@ -48,9 +48,11 @@ import styled, {createGlobalStyle} from "styled-components";
    -moz-background-clip: text;
    -moz-text-fill-color: transparent;
    filter: drop-shadow(2px 2px #0085a3);
-   font-size: 70px;
-   margin: 20px;
-   font-weight: 400;
+   font-size: 50px;
+   margin: 20px auto;
+   padding: 0 10px;
+   text-align: center;
+   font-weight: 500;
   }
 
   .start, .next {

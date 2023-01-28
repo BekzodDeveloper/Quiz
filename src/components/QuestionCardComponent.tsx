@@ -14,7 +14,7 @@ type QuestionCardType = {
     checkAnswer: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export const QuestionCard: React.FC<QuestionCardType> =
+export const QuestionCardComponent: React.FC<QuestionCardType> =
     ({
          // questionItem,
          // answers,
@@ -26,11 +26,11 @@ export const QuestionCard: React.FC<QuestionCardType> =
          questionNum,
          totalQuestions
      }) => {
-debugger
+
         return (
             <Wrapper>
                 <p className="number">
-                    Question: {questionNum} / {totalQuestions}
+                    Вопросы: {questionNum} / {totalQuestions}
                 </p>
                 <p dangerouslySetInnerHTML={{__html: question}}/>
                 <AnswerWrapper>

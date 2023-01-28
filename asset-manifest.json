@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/BekzodDeveloper/static/js/main.4a5b960f.js",
-    "static/media/mountains.jpg": "/BekzodDeveloper/static/media/mountains.4cc60c737a910d45a5ab.jpg",
-    "static/media/loading-gif.gif": "/BekzodDeveloper/static/media/loading-gif.803f24369a085e35482e.gif",
-    "index.html": "/BekzodDeveloper/index.html",
-    "main.4a5b960f.js.map": "/BekzodDeveloper/static/js/main.4a5b960f.js.map"
+    "main.js": "/exam-quiz/static/js/main.975d3461.js",
+    "static/media/mountains.jpg": "/exam-quiz/static/media/mountains.4cc60c737a910d45a5ab.jpg",
+    "static/media/loading-gif.gif": "/exam-quiz/static/media/loading-gif.803f24369a085e35482e.gif",
+    "index.html": "/exam-quiz/index.html",
+    "main.975d3461.js.map": "/exam-quiz/static/js/main.975d3461.js.map"
   },
   "entrypoints": [
-    "static/js/main.4a5b960f.js"
+    "static/js/main.975d3461.js"
   ]
 }

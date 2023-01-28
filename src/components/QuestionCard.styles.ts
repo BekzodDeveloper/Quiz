@@ -3,11 +3,12 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
 
   max-width: 1000px;
-  background: #ebfeff;
+  //background: #fff;
   border-radius: 10px;
-  border: 2px solid #0085a3;
-  padding: 20px;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+  //border: 2px solid #0085a3;
+  padding: 0px 0 20px;
+  //box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+  //box-shadow: 0px 108px 43px rgba(0, 0, 0, 0.01), 0px 61px 36px rgba(0, 0, 0, 0.05), 0px 27px 27px rgba(0, 0, 0, 0.09), 0px 7px 15px rgba(0, 0, 0, 0.1), 0px 0px 0px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 100%;
   margin: 0 10px;
@@ -37,18 +38,26 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
     width: 100%;
     height: 100%;
     margin: 5px 0;
-    //background: linear-gradient(90deg, #56ccff, #6eafb4);
     background: ${({correct, userClicked}) =>
-            correct ? "linear-gradient(90deg, #56ffa4, #59bc86)"
+            correct ? "#59ba0f"
                     : userClicked && !correct
-                            ? "linear-gradient(90deg, #ff5656, #c16868)"
-                            : "linear-gradient(90deg, #56ccff, #6eafb4)"};
+                            ? "#C82020"
+                            : "transparent"};
 
-    border: 1px solid #fff;
+    border: 2px solid ${({correct, userClicked}) =>
+            correct ? "#59ba0f"
+                    : userClicked && !correct
+                            ? "#C82020"
+                            : "#222222"};
+
     box-shadow: 1px 2px 0px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    color: #0a1a4b;
-    text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+    color: ${({correct, userClicked}) =>
+            correct ? "#fff"
+                    : userClicked && !correct
+                            ? "#fff"
+                            : "#222222"};
+    //text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
   }
 
 `;

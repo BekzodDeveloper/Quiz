@@ -7,8 +7,9 @@ import styled, {createGlobalStyle} from "styled-components";
    }
 
    body {
-     background-image: url(${BGImage});
+     //background-image: url(${BGImage});
      background-size: cover;
+    background-color: #e5e5e5;
      margin: 0;
      padding: 0 20px;
      display: flex;
@@ -23,51 +24,69 @@ import styled, {createGlobalStyle} from "styled-components";
  `;
  
  export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+  padding-bottom: 50px;
+   > p {
+     color: #000;
+   }
 
-  > p {
-   color: #000;
-  }
+   .score {
+     color: #000;
+     font-size: 20px;
+     line-height: 26px;
+     margin: 20px 0px 10px;
+     font-weight: 400;
+   }
 
-  .score {
-   color: #fff;
-   font-size: 2rem;
-   margin: 0px 0px 10px;
-   font-weight: 500;
-  }
+   h1 {
+     //font-family: Fascinate Inline, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+     //background-image: linear-gradient(180deg, #fff, #87f1ff);
+     //background-size: 100%;
+     //background-clip: text;
+     //-webkit-background-clip: text;
+     //-webkit-text-fill-color: transparent;
+     //-moz-background-clip: text;
+     //-moz-text-fill-color: transparent;
+     //filter: drop-shadow(2px 2px #0085a3);
+     color: #222222;
+     font-size: 26px;
+     margin: 0px auto 20px;
+     padding: 0 10px;
+     text-align: center;
+     font-weight: 500;
+   }
 
-  h1 {
-   font-family: Fascinate Inline, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-   background-image: linear-gradient(180deg, #fff, #87f1ff);
-   background-size: 100%;
-   background-clip: text;
-   -webkit-background-clip: text;
-   -webkit-text-fill-color: transparent;
-   -moz-background-clip: text;
-   -moz-text-fill-color: transparent;
-   filter: drop-shadow(2px 2px #0085a3);
-   font-size: 50px;
-   margin: 20px auto;
-   padding: 0 10px;
-   text-align: center;
-   font-weight: 500;
-  }
+   .start, .next {
+     cursor: pointer;
 
-  .start, .next {
-   cursor: pointer;
-   background: linear-gradient(180deg, #fff, #ffcc91);
-   border: 2px solid #d38558;
-   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-   border-radius: 10px;
-   height: 40px;
-   margin: 20px 0;
-   padding: 0 40px;
-  }
+     //background: linear-gradient(180deg, #fff, #ffcc91);
+     border: 2px solid #222222;
+     //box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+     border-radius: 10px;
+     height: 40px;
+     //margin: 10px 0px;
+     padding: 0px 5px;
+    font-size: 14px;
+    
 
-  .start {
-   max-width: 200px;
-  }
+     a {
+       font-size: 14px;
+       display: inline-flex;
+       height: 100%;
+       align-items: center;
+       width: 100%;
+       padding: 0 10px;
+       color: #000;
+       text-decoration: none;
+     }
+
+   }
+
+
+   .start {
+     max-width: 200px;
+   }
 
  `;

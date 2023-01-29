@@ -74,27 +74,27 @@ const App = () => {
     }
 
 // slice questions and answers from Array of strings
-//     function sliceArray(array: Array<string>) {
-//
-//         let size: number = 5;
-//         let subarray: Array<Array<string>> = [];// [ [string,string ], [ ], ]
-//         for (let i = 0; i < Math.ceil(array.length / size); i++) {
-//             subarray[i] = array.slice((i * size), (i * size) + size);
-//         }
-//         const objs: Array<QuestionType> = subarray.map(sub => (
-//             {
-//                 category: "ИЭУ",
-//                 type: "multiple",
-//                 difficulty: "easy",
-//                 question: sub[0],
-//                 correct_answer: sub[1],
-//                 incorrect_answers: [sub[2], sub[3], sub[4]]
-//             }
-//         ))
-//         return objs;
-//     }
-//
-//     const questionArrays: Array<QuestionType> = sliceArray(ex.questions);
+    function sliceArray(array: Array<string>) {
+
+        let size: number = 5;
+        let subarray: Array<Array<string>> = [];// [ [string,string ], [ ], ]
+        for (let i = 0; i < Math.ceil(array.length / size); i++) {
+            subarray[i] = array.slice((i * size), (i * size) + size);
+        }
+        const objs: Array<QuestionType> = subarray.map(sub => (
+            {
+                category: "ПМ",
+                type: "multiple",
+                difficulty: "easy",
+                question: sub[0],
+                correct_answer: sub[1],
+                incorrect_answers: [sub[2], sub[3], sub[4]]
+            }
+        ))
+        return objs;
+    }
+
+    const questionArrays: Array<QuestionType> = sliceArray(ex.questions);
 
 
     return (<>
@@ -162,21 +162,29 @@ const App = () => {
                     !loading &&
                     userAnswers.length === number + 1 &&
                     number !== totalQuestions - 1 &&
-                    <button className='next' onClick={nextQuestion}>Следующий вопрос <img style={{paddingLeft:"5px"}} src={nextArrowIMG}/></button>
+                    <button className='next' onClick={nextQuestion}>Следующий вопрос <img style={{paddingLeft: "5px"}}
+                                                                                          src={nextArrowIMG}/></button>
                 }
+                <div className='powered'>Powered by Kholdorov's - <a
+                    target='_blank'
+                    href="https://t.me/bekzoddeveloper_blog">Bekzod
+                </a> & <a target='_blank' href="https://www.instagram.com/abdulaziz.uxui/">Abdulaziz</a>
+                </div>
             </Wrapper>
-            {/*{concatToJSON && questionArrays.map(myQ => {*/}
-            {/*    return <p key={myQ.question}>*/}
-            {/*        {`{`}*/}
-            {/*        category: "{myQ.category}",*/}
-            {/*        type: "{myQ.type}",*/}
-            {/*        difficulty: "{myQ.difficulty}",*/}
-            {/*        question: "{myQ.question}",*/}
-            {/*        correct_answer: "{myQ.correct_answer}",*/}
-            {/*        incorrect_answers: [{myQ.incorrect_answers.map(ia => `"${ia}",`)}]*/}
-            {/*        {`},`}*/}
-            {/*    </p>*/}
-            {/*})}*/}
+            {concatToJSON && questionArrays.map(myQ => {
+                return <p key={myQ.question}>
+                    {`{`}
+                    category: "{myQ.category}",
+                    type: "{myQ.type}",
+                    difficulty: "{myQ.difficulty}",
+                    question: "{myQ.question}",
+                    correct_answer: "{myQ.correct_answer}",
+                    incorrect_answers: [{myQ.incorrect_answers.map(ia => `"${ia}",`)}]
+                    {`},`}
+                </p>
+            })}
+
+
         </>
     );
 }
@@ -185,13 +193,15 @@ type ButtonsType = {
     startExamQuiz: (category: string) => void
 }
 const Buttons: React.FC<ButtonsType> = ({startExamQuiz}) => {
-    return <div style={{display: "flex", flexWrap: "wrap",gridGap:'10px'}}>
+
+
+    return <div style={{display: "flex", flexWrap: "wrap", gridGap: '10px'}}>
         <button className='next'><NavLink to="/capitalmarket" onClick={() => {
             startExamQuiz('РК')
         }}>Рынок Капитала</NavLink></button>
         <button className='next'><NavLink to="/prodman" onClick={() => {
             startExamQuiz('ПМ')
-        }}>Производственный Менеджмент</NavLink></button>
+        }}>Производ. Менеджмент</NavLink></button>
         <button className='next'><NavLink to="/history" onClick={() => {
             startExamQuiz('ИЭУ')
         }}>История Эк. Уч.</NavLink></button>

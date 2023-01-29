@@ -11,7 +11,7 @@ import styled, {createGlobalStyle} from "styled-components";
      background-size: cover;
     background-color: #e5e5e5;
      margin: 0;
-     padding: 0 20px;
+     padding: 0 20px 100px;
      display: flex;
      justify-content: center;
 
@@ -27,7 +27,8 @@ import styled, {createGlobalStyle} from "styled-components";
    display: flex;
    flex-direction: column;
    align-items: center;
-  padding-bottom: 50px;
+   padding-bottom: 50px;
+
    > p {
      color: #000;
    }
@@ -68,8 +69,8 @@ import styled, {createGlobalStyle} from "styled-components";
      height: 40px;
      //margin: 10px 0px;
      padding: 0px 5px;
-    font-size: 14px;
-    
+     font-size: 14px;
+
 
      a {
        font-size: 14px;
@@ -87,6 +88,21 @@ import styled, {createGlobalStyle} from "styled-components";
 
    .start {
      max-width: 200px;
+   }
+
+   .powered {
+     position: fixed;
+     bottom: 0;
+     background-color: #fff;
+     z-index: 10;
+     width: 100%;
+     padding: 10px;
+     text-align: center;
+    border-top: 1px solid #222;
+    a{
+     color: #222;
+     
+    }
    }
 
  `;

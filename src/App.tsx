@@ -10,7 +10,7 @@ import {QuestionCardComponent} from "./components/QuestionCardComponent";
 import {NavLink, Route, Routes} from "react-router-dom";
 
 
-const concatToJSON: boolean = false;
+const concatToJSON: boolean = true;
 
 
 const App = () => {
@@ -83,7 +83,7 @@ const App = () => {
         }
         const objs: Array<QuestionType> = subarray.map(sub => (
             {
-                category: "ПМ",
+                category: "РК",
                 type: "multiple",
                 difficulty: "easy",
                 question: sub[0],

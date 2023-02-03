@@ -30,7 +30,8 @@ const App = () => {
         const allQuestions = category === "РК"
             ? dataCapitalMarket.questionsCapital : category === "ПМ"
                 ? dataCapitalMarket.questionsProd : category === "ИЭУ"
-                    ? dataCapitalMarket.questionsHistory : [];
+                    ? dataCapitalMarket.questionsHistory : category === "ЦЭ"
+                        ? dataCapitalMarket.questionsDigEco : [];
 
         const newQuestions = shuffleArray(allQuestions.map(questionItem => ({
             ...questionItem,
@@ -83,7 +84,7 @@ const App = () => {
         }
         const objs: Array<QuestionType> = subarray.map(sub => (
             {
-                category: "РК",
+                category: "ЦЭ",
                 type: "multiple",
                 difficulty: "easy",
                 question: sub[0],
@@ -154,6 +155,20 @@ const App = () => {
                                 questionCategory={questions[0].category}
                             />
                         }/>
+                        <Route path='/digeco' element={
+                            <QuestionCardComponent
+                                questionNum={number + 1}
+                                totalQuestions={totalQuestions}
+                                question={questions[number].question}
+                                answers={questions[number].answers}
+                                userAnswer={userAnswers ? userAnswers[number] : undefined}
+                                checkAnswer={checkAnswer}
+                                gameOver={gameOver}
+                                userAnswers={userAnswers}
+                                startExamQuiz={startExamQuiz}
+                                questionCategory={questions[0].category}
+                            />
+                        }/>
 
                     </Routes>
 
@@ -205,6 +220,9 @@ const Buttons: React.FC<ButtonsType> = ({startExamQuiz}) => {
         <button className='next'><NavLink to="/history" onClick={() => {
             startExamQuiz('ИЭУ')
         }}>История Эк. Уч.</NavLink></button>
+        <button className='next'><NavLink to="/digeco" onClick={() => {
+            startExamQuiz('ЦЭ')
+        }}>Цифровая Экономика</NavLink></button>
 
 
     </div>;

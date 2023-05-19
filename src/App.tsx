@@ -31,7 +31,8 @@ const App = () => {
             ? dataCapitalMarket.questionsCapital : category === "ПМ"
                 ? dataCapitalMarket.questionsProd : category === "ИЭУ"
                     ? dataCapitalMarket.questionsHistory : category === "ЦЭ"
-                        ? dataCapitalMarket.questionsDigEco : [];
+                        ? dataCapitalMarket.questionsDigEco : category === "ПТ"
+                            ? dataCapitalMarket.questionsProdTech : [];
 
         const newQuestions = shuffleArray(allQuestions.map(questionItem => ({
             ...questionItem,
@@ -112,7 +113,20 @@ const App = () => {
 
                 {!loading && !gameOver && (
                     <Routes>
-
+                        <Route path='/prodtech' element={
+                            <QuestionCardComponent
+                                questionNum={number + 1}
+                                totalQuestions={totalQuestions}
+                                question={questions[number].question}
+                                answers={questions[number].answers}
+                                userAnswer={userAnswers ? userAnswers[number] : undefined}
+                                checkAnswer={checkAnswer}
+                                gameOver={gameOver}
+                                userAnswers={userAnswers}
+                                startExamQuiz={startExamQuiz}
+                                questionCategory={questions[0].category}
+                            />
+                        }/>
                         <Route path='/capitalmarket' element={
                             <QuestionCardComponent
                                 questionNum={number + 1}
@@ -170,6 +184,7 @@ const App = () => {
                             />
                         }/>
 
+
                     </Routes>
 
                 )}
@@ -211,18 +226,22 @@ const Buttons: React.FC<ButtonsType> = ({startExamQuiz}) => {
 
 
     return <div style={{display: "flex", flexWrap: "wrap", gridGap: '10px'}}>
-        <button className='next'><NavLink to="/capitalmarket" onClick={() => {
+
+        <button className='next dnone'><NavLink to="/capitalmarket" onClick={() => {
             startExamQuiz('РК')
         }}>Рынок Капитала</NavLink></button>
-        <button className='next'><NavLink to="/prodman" onClick={() => {
+        <button className='next dnone'><NavLink to="/prodman" onClick={() => {
             startExamQuiz('ПМ')
         }}>Производ. Менеджмент</NavLink></button>
-        <button className='next'><NavLink to="/history" onClick={() => {
+        <button className='next dnone'><NavLink to="/history" onClick={() => {
             startExamQuiz('ИЭУ')
         }}>История Эк. Уч.</NavLink></button>
-        <button className='next'><NavLink to="/digeco" onClick={() => {
+        <button className='next dnone'><NavLink to="/digeco" onClick={() => {
             startExamQuiz('ЦЭ')
         }}>Цифровая Экономика</NavLink></button>
+        <button className='next'><NavLink to="/prodtech" onClick={() => {
+            startExamQuiz('ПТ')
+        }}>Произ-е Технологии</NavLink></button>
 
 
     </div>;

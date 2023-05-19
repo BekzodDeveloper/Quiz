@@ -85,6 +85,9 @@ import styled, {createGlobalStyle} from "styled-components";
 
    }
 
+   .dnone {
+     display: none;
+   }
 
    .start {
      max-width: 200px;
@@ -98,11 +101,12 @@ import styled, {createGlobalStyle} from "styled-components";
      width: 100%;
      padding: 10px;
      text-align: center;
-    border-top: 1px solid #222;
-    a{
-     color: #222;
-     
-    }
+     border-top: 1px solid #222;
+
+     a {
+       color: #222;
+
+     }
    }
 
  `;

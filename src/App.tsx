@@ -32,7 +32,8 @@ const App = () => {
                 ? dataCapitalMarket.questionsProd : category === "ИЭУ"
                     ? dataCapitalMarket.questionsHistory : category === "ЦЭ"
                         ? dataCapitalMarket.questionsDigEco : category === "ПТ"
-                            ? dataCapitalMarket.questionsProdTech : [];
+                            ? dataCapitalMarket.questionsProdTech : category === "PR"
+                                ? dataCapitalMarket.questionsPR : [];
 
         const newQuestions = shuffleArray(allQuestions.map(questionItem => ({
             ...questionItem,
@@ -85,7 +86,7 @@ const App = () => {
         }
         const objs: Array<QuestionType> = subarray.map(sub => (
             {
-                category: "ЦЭ",
+                category: "PR",
                 type: "multiple",
                 difficulty: "easy",
                 question: sub[0],
@@ -106,13 +107,28 @@ const App = () => {
                 <p>Выберите предмет</p>
                 <Buttons startExamQuiz={startExamQuiz}/>
 
-                {!gameOver && <>
-                    <p className="score">Счёт: {score}</p>
-                </>}
+                {/*{!gameOver && <>*/}
+                {/*    <p className="score">Счёт: {score}</p>*/}
+                {/*</>}*/}
                 {loading && <img style={{width: "100px"}} src={LoadingIMG}/>}
 
                 {!loading && !gameOver && (
                     <Routes>
+                        <Route path='/pr' element={
+                            <QuestionCardComponent
+                                questionNum={number + 1}
+                                totalQuestions={totalQuestions}
+                                question={questions[number].question}
+                                answers={questions[number].answers}
+                                userAnswer={userAnswers ? userAnswers[number] : undefined}
+                                checkAnswer={checkAnswer}
+                                gameOver={gameOver}
+                                userAnswers={userAnswers}
+                                startExamQuiz={startExamQuiz}
+                                questionCategory={questions[0].category}
+                                score={score}
+                            />
+                        }/>
                         <Route path='/prodtech' element={
                             <QuestionCardComponent
                                 questionNum={number + 1}
@@ -125,6 +141,7 @@ const App = () => {
                                 userAnswers={userAnswers}
                                 startExamQuiz={startExamQuiz}
                                 questionCategory={questions[0].category}
+                                score={score}
                             />
                         }/>
                         <Route path='/capitalmarket' element={
@@ -139,6 +156,7 @@ const App = () => {
                                 userAnswers={userAnswers}
                                 startExamQuiz={startExamQuiz}
                                 questionCategory={questions[0].category}
+                                score={score}
                             />
                         }/>
                         <Route path='/prodman' element={
@@ -153,6 +171,7 @@ const App = () => {
                                 userAnswers={userAnswers}
                                 startExamQuiz={startExamQuiz}
                                 questionCategory={questions[0].category}
+                                score={score}
                             />
                         }/>
                         <Route path='/history' element={
@@ -167,6 +186,7 @@ const App = () => {
                                 userAnswers={userAnswers}
                                 startExamQuiz={startExamQuiz}
                                 questionCategory={questions[0].category}
+                                score={score}
                             />
                         }/>
                         <Route path='/digeco' element={
@@ -181,6 +201,7 @@ const App = () => {
                                 userAnswers={userAnswers}
                                 startExamQuiz={startExamQuiz}
                                 questionCategory={questions[0].category}
+                                score={score}
                             />
                         }/>
 
@@ -242,6 +263,9 @@ const Buttons: React.FC<ButtonsType> = ({startExamQuiz}) => {
         <button className='next'><NavLink to="/prodtech" onClick={() => {
             startExamQuiz('ПТ')
         }}>Произ-е Технологии</NavLink></button>
+        <button className='next'><NavLink to="/pr" onClick={() => {
+            startExamQuiz('PR')
+        }}>Public Relations</NavLink></button>
 
 
     </div>;

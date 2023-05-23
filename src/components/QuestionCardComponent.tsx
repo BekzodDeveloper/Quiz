@@ -16,6 +16,7 @@ type QuestionCardType = {
     userAnswers: Array<AnswerType>
     startExamQuiz: (category: string) => void,
     questionCategory: string
+    score: number
 }
 
 export const QuestionCardComponent: React.FC<QuestionCardType> =
@@ -33,19 +34,23 @@ export const QuestionCardComponent: React.FC<QuestionCardType> =
          gameOver,
          userAnswers,
          startExamQuiz,
-         questionCategory
+         questionCategory,
+         score
      }) => {
-
+        let progress = (totalQuestions/100) * score;
         return (
             <>
                 {/*<h2 style={{fontSize: '20px'}}>{questionCategory}</h2>*/}
                 <Wrapper>
 
 
-                    <p style={{ margin:'0 0 10px'}} className="number">
-                        Вопросы: {questionNum} / {totalQuestions}
+                    <p style={{margin: '20px 0 10px'}} className="number">
+                        Всего вопросов: {totalQuestions}
                     </p>
-                    <p style={{ fontSize: "20px",fontWeight: "400" }} dangerouslySetInnerHTML={{__html: question}}/>
+                    <p style={{margin: '0 0 10px', fontSize: '20px'}} className="number">
+                        Правильных ответов: {score} из {questionNum} и прогресс {progress}%
+                    </p>
+                    <p style={{fontSize: "20px", fontWeight: "400"}} dangerouslySetInnerHTML={{__html: question}}/>
                     <AnswerWrapper>
 
                         {answers.map(ans => (
@@ -59,9 +64,13 @@ export const QuestionCardComponent: React.FC<QuestionCardType> =
                             </ButtonWrapper>))}
                     </AnswerWrapper>
                     {gameOver || userAnswers.length === totalQuestions
-                        ? <button style={{ padding:"10px 40px",margin:"30px 0" }} className='start' onClick={() => {
-                            startExamQuiz(questionCategory)
-                        }}>Рестарт ▶ </button>
+                        ? <>
+
+                            <button style={{padding: "10px 40px", margin: "30px 0"}} className='start' onClick={() => {
+                                startExamQuiz(questionCategory)
+                            }}>Рестарт ▶
+                            </button>
+                        </>
                         : null}
                 </Wrapper>
             </>

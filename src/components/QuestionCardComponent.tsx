@@ -37,7 +37,7 @@ export const QuestionCardComponent: React.FC<QuestionCardType> =
          questionCategory,
          score
      }) => {
-        let progress = (totalQuestions/100) * score;
+        // let progress = ((50 / 20) * score).toFixed(1);
         return (
             <>
                 {/*<h2 style={{fontSize: '20px'}}>{questionCategory}</h2>*/}
@@ -48,8 +48,11 @@ export const QuestionCardComponent: React.FC<QuestionCardType> =
                         Всего вопросов: {totalQuestions}
                     </p>
                     <p style={{margin: '0 0 10px', fontSize: '20px'}} className="number">
-                        Правильных ответов: {score} из {questionNum} и прогресс {progress}%
+                        Правильных ответов: {score} из {questionNum}
                     </p>
+                    {/*<p style={{margin: '0 0 10px', fontSize: '20px'}} className="number">*/}
+                    {/*    {progress} баллов*/}
+                    {/*</p>*/}
                     <p style={{fontSize: "20px", fontWeight: "400"}} dangerouslySetInnerHTML={{__html: question}}/>
                     <AnswerWrapper>
 

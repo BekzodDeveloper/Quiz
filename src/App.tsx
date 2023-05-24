@@ -8,10 +8,13 @@ import {AnswerType, dataCapitalMarket, ex, QuestionItemType, QuestionState, Ques
 import {shuffleArray} from "./utils";
 import {QuestionCardComponent} from "./components/QuestionCardComponent";
 import {NavLink, Route, Routes} from "react-router-dom";
+import {type} from "os";
 
 
 const concatToJSON: boolean = true;
-
+type QuestionObj = {
+    title: string, category: string, btnClass: string, path: string
+}
 
 const App = () => {
 
@@ -71,6 +74,8 @@ const App = () => {
         const nextQuestion = number + 1;
         if (nextQuestion === totalQuestions) {
             setGameOver(true);
+        } else if (nextQuestion === totalQuestions) {
+            setGameOver(true);
         } else {
             setNumber(nextQuestion)
         }
@@ -97,15 +102,23 @@ const App = () => {
         return objs;
     }
 
-    const questionArrays: Array<QuestionType> = sliceArray(ex.questions);
 
+    const questionArrays: Array<QuestionType> = sliceArray(ex.questions);
+    const questionObjs: Array<QuestionObj> = [
+        {title: "Рынок Капитала", category: "РК", btnClass: "next", path: "/capitalmarket"},
+        {title: "Производ. Менеджмент", category: "ПМ", btnClass: "next", path: "/prodman"},
+        {title: "История Эк. Уч.", category: "ИЭУ", btnClass: "next", path: "/history"},
+        {title: "Цифровая Экономика", category: "ЦЭ", btnClass: "next", path: "/digeco"},
+        {title: "Произ-е Технологии", category: "ПТ", btnClass: "next", path: "/prodtech"},
+        {title: "Public Relations", category: "PR", btnClass: "next", path: "/pr"},
+    ]
 
     return (<>
             <GlobalStyle/>
             <Wrapper>
                 <h1 style={{margin: "40px 5px 0px"}}>Итоговая контрольная</h1>
                 <p>Выберите предмет</p>
-                <Buttons startExamQuiz={startExamQuiz}/>
+                <Buttons startExamQuiz={startExamQuiz} questionObjs={questionObjs}/>
 
                 {/*{!gameOver && <>*/}
                 {/*    <p className="score">Счёт: {score}</p>*/}
@@ -113,99 +126,25 @@ const App = () => {
                 {loading && <img style={{width: "100px"}} src={LoadingIMG}/>}
 
                 {!loading && !gameOver && (
+
                     <Routes>
-                        <Route path='/pr' element={
-                            <QuestionCardComponent
-                                questionNum={number + 1}
-                                totalQuestions={totalQuestions}
-                                question={questions[number].question}
-                                answers={questions[number].answers}
-                                userAnswer={userAnswers ? userAnswers[number] : undefined}
-                                checkAnswer={checkAnswer}
-                                gameOver={gameOver}
-                                userAnswers={userAnswers}
-                                startExamQuiz={startExamQuiz}
-                                questionCategory={questions[0].category}
-                                score={score}
-                            />
-                        }/>
-                        <Route path='/prodtech' element={
-                            <QuestionCardComponent
-                                questionNum={number + 1}
-                                totalQuestions={totalQuestions}
-                                question={questions[number].question}
-                                answers={questions[number].answers}
-                                userAnswer={userAnswers ? userAnswers[number] : undefined}
-                                checkAnswer={checkAnswer}
-                                gameOver={gameOver}
-                                userAnswers={userAnswers}
-                                startExamQuiz={startExamQuiz}
-                                questionCategory={questions[0].category}
-                                score={score}
-                            />
-                        }/>
-                        <Route path='/capitalmarket' element={
-                            <QuestionCardComponent
-                                questionNum={number + 1}
-                                totalQuestions={totalQuestions}
-                                question={questions[number].question}
-                                answers={questions[number].answers}
-                                userAnswer={userAnswers ? userAnswers[number] : undefined}
-                                checkAnswer={checkAnswer}
-                                gameOver={gameOver}
-                                userAnswers={userAnswers}
-                                startExamQuiz={startExamQuiz}
-                                questionCategory={questions[0].category}
-                                score={score}
-                            />
-                        }/>
-                        <Route path='/prodman' element={
-                            <QuestionCardComponent
-                                questionNum={number + 1}
-                                totalQuestions={totalQuestions}
-                                question={questions[number].question}
-                                answers={questions[number].answers}
-                                userAnswer={userAnswers ? userAnswers[number] : undefined}
-                                checkAnswer={checkAnswer}
-                                gameOver={gameOver}
-                                userAnswers={userAnswers}
-                                startExamQuiz={startExamQuiz}
-                                questionCategory={questions[0].category}
-                                score={score}
-                            />
-                        }/>
-                        <Route path='/history' element={
-                            <QuestionCardComponent
-                                questionNum={number + 1}
-                                totalQuestions={totalQuestions}
-                                question={questions[number].question}
-                                answers={questions[number].answers}
-                                userAnswer={userAnswers ? userAnswers[number] : undefined}
-                                checkAnswer={checkAnswer}
-                                gameOver={gameOver}
-                                userAnswers={userAnswers}
-                                startExamQuiz={startExamQuiz}
-                                questionCategory={questions[0].category}
-                                score={score}
-                            />
-                        }/>
-                        <Route path='/digeco' element={
-                            <QuestionCardComponent
-                                questionNum={number + 1}
-                                totalQuestions={totalQuestions}
-                                question={questions[number].question}
-                                answers={questions[number].answers}
-                                userAnswer={userAnswers ? userAnswers[number] : undefined}
-                                checkAnswer={checkAnswer}
-                                gameOver={gameOver}
-                                userAnswers={userAnswers}
-                                startExamQuiz={startExamQuiz}
-                                questionCategory={questions[0].category}
-                                score={score}
-                            />
-                        }/>
-
-
+                        {questionObjs.map(q => {
+                            return <Route path={q.path} element={
+                                <QuestionCardComponent
+                                    questionNum={number + 1}
+                                    totalQuestions={totalQuestions}
+                                    question={questions[number].question}
+                                    answers={questions[number].answers}
+                                    userAnswer={userAnswers ? userAnswers[number] : undefined}
+                                    checkAnswer={checkAnswer}
+                                    gameOver={gameOver}
+                                    userAnswers={userAnswers}
+                                    startExamQuiz={startExamQuiz}
+                                    questionCategory={questions[0].category}
+                                    score={score}
+                                />
+                            }/>
+                        })}
                     </Routes>
 
                 )}
@@ -242,30 +181,35 @@ const App = () => {
 
 type ButtonsType = {
     startExamQuiz: (category: string) => void
+    questionObjs: Array<QuestionObj>
 }
-const Buttons: React.FC<ButtonsType> = ({startExamQuiz}) => {
+const Buttons: React.FC<ButtonsType> = ({startExamQuiz,questionObjs}) => {
 
 
     return <div style={{display: "flex", flexWrap: "wrap", gridGap: '10px'}}>
-
-        <button className='next dnone'><NavLink to="/capitalmarket" onClick={() => {
-            startExamQuiz('РК')
-        }}>Рынок Капитала</NavLink></button>
-        <button className='next dnone'><NavLink to="/prodman" onClick={() => {
-            startExamQuiz('ПМ')
-        }}>Производ. Менеджмент</NavLink></button>
-        <button className='next dnone'><NavLink to="/history" onClick={() => {
-            startExamQuiz('ИЭУ')
-        }}>История Эк. Уч.</NavLink></button>
-        <button className='next dnone'><NavLink to="/digeco" onClick={() => {
-            startExamQuiz('ЦЭ')
-        }}>Цифровая Экономика</NavLink></button>
-        <button className='next'><NavLink to="/prodtech" onClick={() => {
-            startExamQuiz('ПТ')
-        }}>Произ-е Технологии</NavLink></button>
-        <button className='next'><NavLink to="/pr" onClick={() => {
-            startExamQuiz('PR')
-        }}>Public Relations</NavLink></button>
+        {questionObjs.map(q=>{
+            return  <button className={q.btnClass}><NavLink to={q.path} onClick={() => {
+                startExamQuiz(q.category)
+            }}>{q.title}</NavLink></button>
+        })}
+        {/*<button className='next dnone'><NavLink to="/capitalmarket" onClick={() => {*/}
+        {/*    startExamQuiz('РК')*/}
+        {/*}}>Рынок Капитала</NavLink></button>*/}
+        {/*<button className='next dnone'><NavLink to="/prodman" onClick={() => {*/}
+        {/*    startExamQuiz('ПМ')*/}
+        {/*}}>Производ. Менеджмент</NavLink></button>*/}
+        {/*<button className='next dnone'><NavLink to="/history" onClick={() => {*/}
+        {/*    startExamQuiz('ИЭУ')*/}
+        {/*}}>История Эк. Уч.</NavLink></button>*/}
+        {/*<button className='next dnone'><NavLink to="/digeco" onClick={() => {*/}
+        {/*    startExamQuiz('ЦЭ')*/}
+        {/*}}>Цифровая Экономика</NavLink></button>*/}
+        {/*<button className='next'><NavLink to="/prodtech" onClick={() => {*/}
+        {/*    startExamQuiz('ПТ')*/}
+        {/*}}>Произ-е Технологии</NavLink></button>*/}
+        {/*<button className='next'><NavLink to="/pr" onClick={() => {*/}
+        {/*    startExamQuiz('PR')*/}
+        {/*}}>Public Relations</NavLink></button>*/}
 
 
     </div>;

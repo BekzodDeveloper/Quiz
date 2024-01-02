@@ -1,4 +1,4 @@
-import React, {ChangeEvent, ChangeEventHandler, useState} from 'react';
+import React, {ChangeEvent, ChangeEventHandler, MouseEventHandler, useState} from 'react';
 
 import {GlobalStyle, Wrapper} from "./App.styles";
 
@@ -8,7 +8,6 @@ import {AnswerType, dataQuestions, ex, QuestionItemType, QuestionState, Question
 import {shuffleArray} from "./utils";
 import {QuestionCardComponent} from "./components/QuestionCardComponent";
 import {NavLink, Route, Routes} from "react-router-dom";
-import {type} from "os";
 
 
 const concatToJSON: boolean = true;
@@ -161,11 +160,13 @@ const App = () => {
             <GlobalStyle/>
             <Wrapper>
                 <h1 style={{margin: "40px 5px 0px"}}>Итоговая контрольная</h1>
-                <input type="password" value={inputValue} onChange={inputChange} style={{marginBottom: "10px", marginTop:"10px"}}/>
+                <input type="password" value={inputValue} onChange={inputChange}
+                       style={{marginBottom: "10px", marginTop: "10px"}}/>
                 {inputValue === pass ?
                     <>
                         <p>Выберите предмет</p>
-                        <Buttons startExamQuiz={startExamQuiz} questionObjs={questionObjs}/>
+                        <Buttons startExamQuiz={startExamQuiz}
+                                 questionObjs={questionObjs}/>
                     </>
                     : inputValue === pass1 ?
                         <>
@@ -236,16 +237,21 @@ type ButtonsType = {
     startExamQuiz: (category: string) => void
     questionObjs: Array<QuestionObj>
 }
+
 const Buttons: React.FC<ButtonsType> = ({startExamQuiz, questionObjs}) => {
 
 
     return <div style={{display: "flex", flexWrap: "wrap", gridGap: '10px'}}>
         {questionObjs.map(q => {
-            return <button className={q.btnClass}><NavLink to={q.path} onClick={() => {
-                startExamQuiz(q.category)
-            }}>{q.title}</NavLink></button>
+            return <button className={q.btnClass}>
+                <NavLink to={q.path}
+                         onClick={() => {
+                             startExamQuiz(q.category)
+                         }}>
+                    {q.title}
+                </NavLink>
+            </button>
         })}
     </div>;
 }
-export default App
-;
+export default App;

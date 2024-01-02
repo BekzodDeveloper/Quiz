@@ -57,6 +57,12 @@ const App = () => {
             case "PM":
                 allQuestions = dataQuestions.questionsPM;
                 break
+            case "МИ1":
+                allQuestions = dataQuestions.questionsMoR1;
+                break
+            case "PM1":
+                allQuestions = dataQuestions.questionsPM1;
+                break
             default:
                 allQuestions = [];
         }
@@ -127,6 +133,7 @@ const App = () => {
 
 
     const questionArrays: Array<QuestionType> = sliceArray(ex.questions);
+
     const questionObjs: Array<QuestionObj> = [
         // {title: "Рынок Капитала", category: "РК", btnClass: "next", path: "/capitalmarket"},
         // {title: "Производ. Менеджмент", category: "ПМ", btnClass: "next", path: "/prodman"},
@@ -136,18 +143,14 @@ const App = () => {
         // {title: "Public Relations", category: "PR", btnClass: "next", path: "/pr"},
         {title: "Методы исследования", category: "МИ", btnClass: "next", path: "/mor"},
         {title: "Проджект Менеджмент", category: "PM", btnClass: "next", path: "/pm"},
-    ]
+    ];
     const questionObjs1: Array<QuestionObj> = [
-        // {title: "Рынок Капитала", category: "РК", btnClass: "next", path: "/capitalmarket"},
-        // {title: "Производ. Менеджмент", category: "ПМ", btnClass: "next", path: "/prodman"},
-        // {title: "История Эк. Уч.", category: "ИЭУ", btnClass: "next", path: "/history"},
-        // {title: "Цифровая Экономика", category: "ЦЭ", btnClass: "next", path: "/digeco"},
-        // {title: "Произ-е Технологии", category: "ПТ", btnClass: "next", path: "/prodtech"},
-        // {title: "Public Relations", category: "PR", btnClass: "next", path: "/pr"},
-        {title: "Методы исследования", category: "МИ", btnClass: "next", path: "/mor"},
-        {title: "Проджект Менеджмент", category: "PM", btnClass: "next", path: "/pm"},
-    ]
-    type InputValue = any;
+        {title: "Методы исследования1", category: "МИ1", btnClass: "next", path: "/mor1"},
+        {title: "Проджект Менеджмент1", category: "PM1", btnClass: "next", path: "/pm1"},
+    ];
+
+
+    type InputValue = string;
     const pass = "MNP31";
     const pass1 = "BNV31";
     const [inputValue, setInputValue] = useState<InputValue>("");
@@ -156,12 +159,14 @@ const App = () => {
         setInputValue(event.target.value)
     }
 
+
     return (<>
             <GlobalStyle/>
             <Wrapper>
                 <h1 style={{margin: "40px 5px 0px"}}>Итоговая контрольная</h1>
                 <input type="password" value={inputValue} onChange={inputChange}
-                       style={{marginBottom: "10px", marginTop: "10px"}}/>
+                       style={{marginBottom: "10px", marginTop: "10px", padding:"5px"}}/>
+
                 {inputValue === pass ?
                     <>
                         <p>Выберите предмет</p>
@@ -171,36 +176,44 @@ const App = () => {
                     : inputValue === pass1 ?
                         <>
                             <p>Выберите предмет</p>
-                            <Buttons startExamQuiz={startExamQuiz} questionObjs={questionObjs1}/>
+                            <Buttons
+                                startExamQuiz={startExamQuiz}
+                                questionObjs={questionObjs1}/>
                         </>
-                        : "🔼 Наберите пароль 🔼"
+                        : (<>
+                            🔼 Наберите пароль 🔼
+                        </>)
                 }
 
 
                 {loading && <img style={{width: "100px"}} src={LoadingIMG}/>}
 
-                {!loading && !gameOver && (
+                {!loading && !gameOver && (inputValue === pass || inputValue === pass1) && (
 
                     <Routes>
-                        {questionObjs.map(q => {
-                            return <Route path={q.path} element={
-                                <QuestionCardComponent
-                                    questionNum={number + 1}
-                                    totalQuestions={totalQuestions}
-                                    question={questions[number].question}
-                                    answers={questions[number].answers}
-                                    userAnswer={userAnswers ? userAnswers[number] : undefined}
-                                    checkAnswer={checkAnswer}
-                                    gameOver={gameOver}
-                                    userAnswers={userAnswers}
-                                    startExamQuiz={startExamQuiz}
-                                    questionCategory={questions[0].category}
-                                    score={score}
-                                />
-                            }/>
-                        })}
-                    </Routes>
+                        {
+                            (inputValue === pass ? questionObjs :
+                                inputValue === pass1 ?
+                                    questionObjs1 : []).map(q => {
+                                return <Route path={q.path} element={
+                                    <QuestionCardComponent
+                                        questionNum={number + 1}
+                                        totalQuestions={totalQuestions}
+                                        question={questions[number].question}
+                                        answers={questions[number].answers}
+                                        userAnswer={userAnswers ? userAnswers[number] : undefined}
+                                        checkAnswer={checkAnswer}
+                                        gameOver={gameOver}
+                                        userAnswers={userAnswers}
+                                        startExamQuiz={startExamQuiz}
+                                        questionCategory={questions[0].category}
+                                        score={score}
+                                    />
+                                }/>
+                            })
 
+                        }
+                    </Routes>
                 )}
                 {!gameOver &&
                     !loading &&
@@ -243,7 +256,7 @@ const Buttons: React.FC<ButtonsType> = ({startExamQuiz, questionObjs}) => {
 
     return <div style={{display: "flex", flexWrap: "wrap", gridGap: '10px'}}>
         {questionObjs.map(q => {
-            return <button className={q.btnClass}>
+            return <button key={q.category} className={q.btnClass}>
                 <NavLink to={q.path}
                          onClick={() => {
                              startExamQuiz(q.category)

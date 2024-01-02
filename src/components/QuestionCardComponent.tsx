@@ -1,6 +1,6 @@
 import React from 'react';
 import {AnswerWrapper, ButtonWrapper, Wrapper} from "./QuestionCard.styles";
-import {AnswerType, QuestionItemType} from "../state/state";
+import {AnswerType, dataQuestions, QuestionItemType} from "../state/state";
 
 type QuestionCardType = {
     // questionItem: QuestionItemType
@@ -18,6 +18,7 @@ type QuestionCardType = {
     questionCategory: string
     score: number
 }
+
 
 export const QuestionCardComponent: React.FC<QuestionCardType> =
     ({
@@ -38,6 +39,7 @@ export const QuestionCardComponent: React.FC<QuestionCardType> =
          score
      }) => {
         // let progress = ((50 / 20) * score).toFixed(1);
+        // console.log(question)
         return (
             <>
                 {/*<h2 style={{fontSize: '20px'}}>{questionCategory}</h2>*/}
@@ -50,6 +52,7 @@ export const QuestionCardComponent: React.FC<QuestionCardType> =
                     <p style={{margin: '0 0 10px', fontSize: '20px'}} className="number">
                         Правильных ответов: {score} из {questionNum}
                     </p>
+                    <hr/>
                     {/*<p style={{margin: '0 0 10px', fontSize: '20px'}} className="number">*/}
                     {/*    {progress} баллов*/}
                     {/*</p>*/}
@@ -69,7 +72,7 @@ export const QuestionCardComponent: React.FC<QuestionCardType> =
                     {gameOver || userAnswers.length === totalQuestions
                         ? <>
 
-                            <button style={{padding: "10px 40px", margin: "30px 0"}} className='start' onClick={() => {
+                            <button style={{padding: "10px 40px", margin: "30px 0", backgroundColor:"#59ba0f", color:"#fff", borderColor:"#59ba0f"}} className='start' onClick={() => {
                                 startExamQuiz(questionCategory)
                             }}>Рестарт ▶
                             </button>

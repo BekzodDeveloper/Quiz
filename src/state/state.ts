@@ -30,6 +30,8 @@ export type StatePropsType = {
     questionsPR: Array<QuestionType>
     questionsMoR: Array<QuestionType>
     questionsPM: Array<QuestionType>
+    questionsMoR1: Array<QuestionType>
+    questionsPM1: Array<QuestionType>
 }
 export type QuestionState = QuestionType & { answers: Array<string> }
 
@@ -5222,6 +5224,16 @@ export const dataQuestions: StatePropsType = {
         {category: "PM", type: "multiple", difficulty: "easy", question: "PM ? ", correct_answer: "Прав ответ", incorrect_answers: ["журналы","радио","Телевизор",]},
         {category: "PM", type: "multiple", difficulty: "easy", question: "PM2 ? ", correct_answer: "Прав ответ", incorrect_answers: ["журналы","радио","Телевизор",]},
         {category: "PM", type: "multiple", difficulty: "easy", question: "PM3 ? ", correct_answer: "Прав ответ", incorrect_answers: ["журналы","радио","Телевизор",]},
+    ],
+    questionsMoR1:[
+        {category: "МИ1", type: "multiple", difficulty: "easy", question: "Ввопрос1 ? ", correct_answer: "Прав ответ", incorrect_answers: ["журналы","радио","Телевизор",]},
+        {category: "МИ1", type: "multiple", difficulty: "easy", question: "Ввопрос11 ? ", correct_answer: "Прав ответ", incorrect_answers: ["журналы","радио","Телевизор",]},
+        {category: "МИ1", type: "multiple", difficulty: "easy", question: "Ввопрос111 ? ", correct_answer: "Прав ответ", incorrect_answers: ["журналы","радио","Телевизор",]},
+    ],
+    questionsPM1:[
+        {category: "PM1", type: "multiple", difficulty: "easy", question: "PM1? ", correct_answer: "Прав ответ", incorrect_answers: ["журналы","радио","Телевизор",]},
+        {category: "PM1", type: "multiple", difficulty: "easy", question: "PM11 ? ", correct_answer: "Прав ответ", incorrect_answers: ["журналы","радио","Телевизор",]},
+        {category: "PM1", type: "multiple", difficulty: "easy", question: "PM13 ? ", correct_answer: "Прав ответ", incorrect_answers: ["журналы","радио","Телевизор",]},
     ],
 
 

@@ -1,13 +1,13 @@
-import React, {ChangeEvent, ChangeEventHandler, MouseEventHandler, useState} from 'react';
+import React, { ChangeEvent, ChangeEventHandler, MouseEventHandler, useState } from 'react';
 
-import {GlobalStyle, Wrapper} from "./App.styles";
+import { GlobalStyle, Wrapper } from "./App.styles";
 
 import LoadingIMG from "./images/loading-gif.gif";
 import nextArrowIMG from "./images/next.svg";
-import {AnswerType, dataQuestions, ex, QuestionItemType, QuestionState, QuestionType} from "./state/state";
-import {shuffleArray} from "./utils";
-import {QuestionCardComponent} from "./components/QuestionCardComponent";
-import {NavLink, Route, Routes} from "react-router-dom";
+import { AnswerType, dataQuestions, ex, QuestionItemType, QuestionState, QuestionType } from "./state/state";
+import { shuffleArray } from "./utils";
+import { QuestionCardComponent } from "./components/QuestionCardComponent";
+import { NavLink, Route, Routes } from "react-router-dom";
 
 
 const concatToJSON: boolean = true;
@@ -110,7 +110,7 @@ const App = () => {
         }
     }
 
-// slice questions and answers from Array of strings
+    // slice questions and answers from Array of strings
     function sliceArray(array: Array<string>) {
 
         let size: number = 5;
@@ -120,7 +120,7 @@ const App = () => {
         }
         const objs: Array<QuestionType> = subarray.map(sub => (
             {
-                category: "PR",
+                category: "МИ",
                 type: "multiple",
                 difficulty: "easy",
                 question: sub[0],
@@ -141,12 +141,12 @@ const App = () => {
         // {title: "Цифровая Экономика", category: "ЦЭ", btnClass: "next", path: "/digeco"},
         // {title: "Произ-е Технологии", category: "ПТ", btnClass: "next", path: "/prodtech"},
         // {title: "Public Relations", category: "PR", btnClass: "next", path: "/pr"},
-        {title: "Методы исследования", category: "МИ", btnClass: "next", path: "/mor"},
-        {title: "Проджект Менеджмент", category: "PM", btnClass: "next", path: "/pm"},
+        { title: "Методы исследования", category: "МИ", btnClass: "next", path: "/mor" },
+        { title: "Проджект Менеджмент", category: "PM", btnClass: "next", path: "/pm" },
     ];
     const questionObjs1: Array<QuestionObj> = [
-        {title: "Методы исследования1", category: "МИ1", btnClass: "next", path: "/mor1"},
-        {title: "Проджект Менеджмент1", category: "PM1", btnClass: "next", path: "/pm1"},
+        { title: "Методы исследования", category: "МИ1", btnClass: "next", path: "/mor1" },
+        { title: "Проджект Менеджмент", category: "PM1", btnClass: "next", path: "/pm1" },
     ];
 
 
@@ -161,106 +161,116 @@ const App = () => {
 
 
     return (<>
-            <GlobalStyle/>
-            <Wrapper>
-                <h1 style={{margin: "40px 5px 0px"}}>Итоговая контрольная</h1>
-                <input type="password" value={inputValue} onChange={inputChange}
-                       style={{marginBottom: "10px", marginTop: "10px", padding:"5px"}}/>
+        <GlobalStyle />
+        <Wrapper>
+            <h1 style={{ margin: "40px 4px 0px" }}>Exam Quiz</h1>
+            <hr />
+            <input type="password" value={inputValue} placeholder={"Введите пароль"} onChange={inputChange}
+                style={{ marginBottom: "10px", marginTop: "10px", padding: "5px" }} />
 
-                {inputValue === pass ?
+            {inputValue === pass ?
+                <>
+                    <p>Выберите предмет</p>
+                    <Buttons startExamQuiz={startExamQuiz}
+                        questionObjs={questionObjs} />
+                </>
+                : inputValue === pass1 ?
                     <>
                         <p>Выберите предмет</p>
-                        <Buttons startExamQuiz={startExamQuiz}
-                                 questionObjs={questionObjs}/>
+                        <Buttons
+                            startExamQuiz={startExamQuiz}
+                            questionObjs={questionObjs1} />
                     </>
-                    : inputValue === pass1 ?
-                        <>
-                            <p>Выберите предмет</p>
-                            <Buttons
-                                startExamQuiz={startExamQuiz}
-                                questionObjs={questionObjs1}/>
-                        </>
-                        : (<>
-                            🔼 Наберите пароль 🔼
-                        </>)
-                }
+                    : (<>
+                        🔼 Введите пароль 🔼
+                    </>)
+            }
 
+            {loading && <img style={{ width: "100px" }} src={LoadingIMG} />}
 
-                {loading && <img style={{width: "100px"}} src={LoadingIMG}/>}
+            {!loading && !gameOver && (inputValue === pass || inputValue === pass1) && (
 
-                {!loading && !gameOver && (inputValue === pass || inputValue === pass1) && (
+                <Routes>
+                    {
+                        (inputValue === pass ? questionObjs :
+                            inputValue === pass1 ?
+                                questionObjs1 : []).map(q => {
+                                    return <Route path={q.path} element={
+                                        <QuestionCardComponent
+                                            questionNum={number + 1}
+                                            totalQuestions={totalQuestions}
+                                            question={questions[number].question}
+                                            answers={questions[number].answers}
+                                            userAnswer={userAnswers ? userAnswers[number] : undefined}
+                                            checkAnswer={checkAnswer}
+                                            gameOver={gameOver}
+                                            userAnswers={userAnswers}
+                                            startExamQuiz={startExamQuiz}
+                                            questionCategory={questions[0].category}
+                                            score={score}
+                                        />
+                                    } />
+                                })
 
-                    <Routes>
-                        {
-                            (inputValue === pass ? questionObjs :
-                                inputValue === pass1 ?
-                                    questionObjs1 : []).map(q => {
-                                return <Route path={q.path} element={
-                                    <QuestionCardComponent
-                                        questionNum={number + 1}
-                                        totalQuestions={totalQuestions}
-                                        question={questions[number].question}
-                                        answers={questions[number].answers}
-                                        userAnswer={userAnswers ? userAnswers[number] : undefined}
-                                        checkAnswer={checkAnswer}
-                                        gameOver={gameOver}
-                                        userAnswers={userAnswers}
-                                        startExamQuiz={startExamQuiz}
-                                        questionCategory={questions[0].category}
-                                        score={score}
-                                    />
-                                }/>
-                            })
+                    }
+                </Routes>
+            )}
+            {!gameOver &&
+                !loading &&
+                userAnswers.length === number + 1 &&
+                number !== totalQuestions - 1 && (inputValue === pass || inputValue === pass1) &&
+                <button className='next' onClick={nextQuestion}>Следующий вопрос <img style={{ paddingLeft: "5px" }}
+                    src={nextArrowIMG} /></button>
+            }
+            <div className='powered'>Powered by Kholdorov's - <a
+                target='_blank'
+                href="https://t.me/bekzodmirzakarim_blog">Bekzod
+            </a> & <a target='_blank' href="https://www.instagram.com/abdulaziz.uxui/">Abdulaziz</a>
+            </div>
 
-                        }
-                    </Routes>
-                )}
-                {!gameOver &&
-                    !loading &&
-                    userAnswers.length === number + 1 &&
-                    number !== totalQuestions - 1 &&
-                    <button className='next' onClick={nextQuestion}>Следующий вопрос <img style={{paddingLeft: "5px"}}
-                                                                                          src={nextArrowIMG}/></button>
-                }
-                <div className='powered'>Powered by Kholdorov's - <a
-                    target='_blank'
-                    href="https://t.me/bekzodmirzakarim_blog">Bekzod
-                </a> & <a target='_blank' href="https://www.instagram.com/abdulaziz.uxui/">Abdulaziz</a>
-                </div>
-            </Wrapper>
-            {concatToJSON && questionArrays.map(myQ => {
-                return <p key={myQ.question}>
-                    {`{`}
-                    category: "{myQ.category}",
-                    type: "{myQ.type}",
-                    difficulty: "{myQ.difficulty}",
-                    question: "{myQ.question}",
-                    correct_answer: "{myQ.correct_answer}",
-                    incorrect_answers: [{myQ.incorrect_answers.map(ia => `"${ia}",`)}]
-                    {`},`}
-                </p>
-            })}
+        </Wrapper>
+        <>
 
+            {
+                concatToJSON && questionArrays.map(myQ => {
+
+                    return <p>
+                        {`{`}
+                        category: "{myQ.category}",
+                        type: "{myQ.type}",
+                        difficulty: "{myQ.difficulty}",
+                        question: "{myQ.question}",
+                        correct_answer: "{myQ.correct_answer}",
+                        incorrect_answers: [{myQ.incorrect_answers.map(ia => `"${ia}",`)}]
+                        {`},`}
+                    </p>
+
+                })
+
+            }
 
         </>
+
+    </>
     );
 }
+
 
 type ButtonsType = {
     startExamQuiz: (category: string) => void
     questionObjs: Array<QuestionObj>
 }
 
-const Buttons: React.FC<ButtonsType> = ({startExamQuiz, questionObjs}) => {
+const Buttons: React.FC<ButtonsType> = ({ startExamQuiz, questionObjs }) => {
 
 
-    return <div style={{display: "flex", flexWrap: "wrap", gridGap: '10px'}}>
+    return <div style={{ display: "flex", flexWrap: "wrap", gridGap: '10px' }}>
         {questionObjs.map(q => {
             return <button key={q.category} className={q.btnClass}>
                 <NavLink to={q.path}
-                         onClick={() => {
-                             startExamQuiz(q.category)
-                         }}>
+                    onClick={() => {
+                        startExamQuiz(q.category)
+                    }}>
                     {q.title}
                 </NavLink>
             </button>

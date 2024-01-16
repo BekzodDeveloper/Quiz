@@ -48,13 +48,12 @@ export const QuestionCardComponent: React.FC<QuestionCardType> =
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                         <p style={{ margin: '5px 5px 10px', fontSize: '18px' }} className="number">
                             |  Всего: 
-                            {/* {totalQuestions}  */}
-                            {questionCategory === "PM" ? " 87" :
-                                questionCategory === "PM1" ? " 87" :
-                                    questionCategory === "МИ" ? " 46" :
-                                        questionCategory == "МИ1" ? " 46" : ""
-
-                            }
+                             {totalQuestions}
+                            {/*{questionCategory === "PM" ? " 87" :*/}
+                            {/*    questionCategory === "PM1" ? " 87" :*/}
+                            {/*        questionCategory === "МИ" ? " 46" :*/}
+                            {/*            questionCategory == "МИ1" ? " 46" : totalQuestions*/}
+                            {/*}*/}
                         </p>
 
                         <p style={{ margin: '5px 5px 10px', fontSize: '18px' }} className="number">

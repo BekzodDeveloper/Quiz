@@ -63,6 +63,12 @@ const App = () => {
             case "PM1":
                 allQuestions = dataQuestions.questionsPM1;
                 break
+            case "Риск":
+                allQuestions = dataQuestions.questionRisk;
+                break
+            case "Риск1":
+                allQuestions = dataQuestions.questionRisk1;
+                break
             default:
                 allQuestions = [];
         }
@@ -120,7 +126,7 @@ const App = () => {
         }
         const objs: Array<QuestionType> = subarray.map(sub => (
             {
-                category: "МИ",
+                category: "Риск",
                 type: "multiple",
                 difficulty: "easy",
                 question: sub[0],
@@ -143,10 +149,12 @@ const App = () => {
         // {title: "Public Relations", category: "PR", btnClass: "next", path: "/pr"},
         { title: "Методы исследования", category: "МИ", btnClass: "next", path: "/mor" },
         { title: "Проджект Менеджмент", category: "PM", btnClass: "next", path: "/pm" },
+        { title: "Риск Менеджмент", category: "Риск", btnClass: "next", path: "/risk" },
     ];
     const questionObjs1: Array<QuestionObj> = [
         { title: "Методы исследования", category: "МИ1", btnClass: "next", path: "/mor1" },
         { title: "Проджект Менеджмент", category: "PM1", btnClass: "next", path: "/pm1" },
+        { title: "Риск Менеджмент", category: "Риск1", btnClass: "next", path: "/risk1" },
     ];
 
 

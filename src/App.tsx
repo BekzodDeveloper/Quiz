@@ -126,7 +126,7 @@ const App = () => {
         }
         const objs: Array<QuestionType> = subarray.map(sub => (
             {
-                category: "Риск",
+                category: "Риск1",
                 type: "multiple",
                 difficulty: "easy",
                 question: sub[0],
@@ -152,15 +152,15 @@ const App = () => {
         { title: "Риск Менеджмент", category: "Риск", btnClass: "next", path: "/risk" },
     ];
     const questionObjs1: Array<QuestionObj> = [
-        { title: "Методы исследования", category: "МИ1", btnClass: "next", path: "/mor1" },
-        { title: "Проджект Менеджмент", category: "PM1", btnClass: "next", path: "/pm1" },
+        // { title: "Методы исследования", category: "МИ1", btnClass: "next", path: "/mor1" },
+        // { title: "Проджект Менеджмент", category: "PM1", btnClass: "next", path: "/pm1" },
         { title: "Риск Менеджмент", category: "Риск1", btnClass: "next", path: "/risk1" },
     ];
 
 
     type InputValue = string;
     const pass = "MNP31";
-    const pass1 = "BNV31";
+    const pass1 = "BBB31";
     const [inputValue, setInputValue] = useState<InputValue>("");
 
     const inputChange = (event: ChangeEvent<HTMLInputElement>) => {

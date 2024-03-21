@@ -69,6 +69,15 @@ const App = () => {
             case "Риск1":
                 allQuestions = dataQuestions.questionRisk1;
                 break
+            case "Банк":
+                allQuestions = dataQuestions.questionsBank;
+                break
+            case "Тайм":
+                allQuestions = dataQuestions.questionsTime;
+                break
+            case "БизСтр":
+                allQuestions = dataQuestions.questionsBusStr;
+                break
             default:
                 allQuestions = [];
         }
@@ -126,7 +135,7 @@ const App = () => {
         }
         const objs: Array<QuestionType> = subarray.map(sub => (
             {
-                category: "Риск1",
+                category: "БизСтр",
                 type: "multiple",
                 difficulty: "easy",
                 question: sub[0],
@@ -147,9 +156,12 @@ const App = () => {
         // {title: "Цифровая Экономика", category: "ЦЭ", btnClass: "next", path: "/digeco"},
         // {title: "Произ-е Технологии", category: "ПТ", btnClass: "next", path: "/prodtech"},
         // {title: "Public Relations", category: "PR", btnClass: "next", path: "/pr"},
-        { title: "Методы исследования", category: "МИ", btnClass: "next", path: "/mor" },
-        { title: "Проджект Менеджмент", category: "PM", btnClass: "next", path: "/pm" },
-        { title: "Риск Менеджмент", category: "Риск", btnClass: "next", path: "/risk" },
+        // { title: "Методы исследования", category: "МИ", btnClass: "next", path: "/mor" },
+        // { title: "Проджект Менеджмент", category: "PM", btnClass: "next", path: "/pm" },
+        // { title: "Риск Менеджмент", category: "Риск", btnClass: "next", path: "/risk" },
+        { title: "Банк и деньги", category: "Банк", btnClass: "next", path: "/bank" },
+        { title: "Тайм Менеджмент", category: "Тайм", btnClass: "next", path: "/time" },
+        { title: "Бизнес Стратегия", category: "БизСтр", btnClass: "next", path: "/busstr" },
     ];
     const questionObjs1: Array<QuestionObj> = [
         // { title: "Методы исследования", category: "МИ1", btnClass: "next", path: "/mor1" },
@@ -230,10 +242,12 @@ const App = () => {
                 <button className='next' onClick={nextQuestion}>Следующий вопрос <img style={{ paddingLeft: "5px" }}
                     src={nextArrowIMG} /></button>
             }
-            <div className='powered'>Powered by Kholdorov's - <a
+            <div className='powered'>
+                {/* Powered by 
+            Kholdorov's - <a
                 target='_blank'
                 href="https://t.me/bekzodmirzakarim_blog">Bekzod
-            </a> & <a target='_blank' href="https://www.instagram.com/abdulaziz.uxui/">Abdulaziz</a>
+            </a> & <a target='_blank' href="https://www.instagram.com/abdulaziz.uxui/">Abdulaziz</a> */}
             </div>
 
         </Wrapper>

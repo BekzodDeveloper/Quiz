@@ -135,7 +135,7 @@ const App = () => {
         }
         const objs: Array<QuestionType> = subarray.map(sub => (
             {
-                category: "БизСтр",
+                category: "Тайм",
                 type: "multiple",
                 difficulty: "easy",
                 question: sub[0],

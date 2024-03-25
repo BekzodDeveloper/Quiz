@@ -9714,7 +9714,7 @@ export const dataQuestions: StatePropsType = {
         
         {category: "Банк", type: "multiple", difficulty: "easy", question: " Денежным выражением стоимости товаров выступает", correct_answer: "Цена", incorrect_answers: ["Прибыль","Доход ","Рентабельность",]},
         
-        {category: "Банк", type: "multiple", difficulty: "easy", question: " В условиях современной рыночной экономики первичной является эмиссия ... денег", correct_answer: "Наличных ", incorrect_answers: ["Бумажных","Металлических","Безналичных",]},
+        {category: "Банк", type: "multiple", difficulty: "easy", question: " В условиях современной рыночной экономики первичной является эмиссия ... денег", correct_answer: "Безналичных", incorrect_answers: ["Бумажных","Металлических","Наличных",]},
         
         {category: "Банк", type: "multiple", difficulty: "easy", question: " Безналичные деньги выпускаются в оборот:", correct_answer: " Коммерческими банками путем предоставления клиентам", incorrect_answers: [" Предприятиями, имеющими счета в коммерческих"," РКЦ путем предоставления ссуд предприятиям"," ЦБ путем предоставления ссуд РКЦ",]},
         
@@ -9778,7 +9778,7 @@ export const dataQuestions: StatePropsType = {
         
         {category: "Банк", type: "multiple", difficulty: "easy", question: "Кредит удовлетворяет ………. потребности участников кредитной сделки.", correct_answer: "временные", incorrect_answers: ["постоянные","стихийные","случайные",]},
         
-        {category: "Банк", type: "multiple", difficulty: "easy", question: "В какой форме всегда выступает ссудный капитал?", correct_answer: "Все ответы верны", incorrect_answers: ["Товарная Форма","Денежная Форма","Смешанная форма(деньги и товар)",]},
+        {category: "Банк", type: "multiple", difficulty: "easy", question: "В какой форме всегда выступает ссудный капитал?", correct_answer: "Денежная Форма", incorrect_answers: ["Товарная Форма","Все ответы верны","Смешанная форма(деньги и товар)",]},
         
         {category: "Банк", type: "multiple", difficulty: "easy", question: "Основным инструментом при банковском кредите является…", correct_answer: "Ключевая ставка", incorrect_answers: ["Коэфициенты","Проценты","Диоценты",]},
         

@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.js": "/exam-quiz/static/js/main.9b2db7a4.js",
+    "main.js": "/exam-quiz/static/js/main.6119014e.js",
     "static/media/mountains.jpg": "/exam-quiz/static/media/mountains.4cc60c737a910d45a5ab.jpg",
     "static/media/loading-gif.gif": "/exam-quiz/static/media/loading-gif.803f24369a085e35482e.gif",
     "index.html": "/exam-quiz/index.html",
-    "static/media/next.svg": "/exam-quiz/static/media/next.930c7ef6b0b64929d8f05ff8adedd99d.svg",
-    "main.9b2db7a4.js.map": "/exam-quiz/static/js/main.9b2db7a4.js.map"
+    "static/media/next.svg": "/exam-quiz/static/media/next.49a2086da4699aba775fca651fb3038b.svg",
+    "main.6119014e.js.map": "/exam-quiz/static/js/main.6119014e.js.map"
   },
   "entrypoints": [
-    "static/js/main.9b2db7a4.js"
+    "static/js/main.6119014e.js"
   ]
 }

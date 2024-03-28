@@ -10035,7 +10035,7 @@ export const dataQuestions: StatePropsType = {
 
 {category: "Тайм", type: "multiple", difficulty: "easy", question: " «…» – это крупные задачи, которые невозможно решить за один раз ?", correct_answer: "Слоны", incorrect_answers: ["Хронофаги ","Крокодилы","Пирамиды",]},
 
-{category: "Тайм", type: "multiple", difficulty: "easy", question: " «…» – это мелкие задачи, на решение которых не требуется много сил и времени, но которые очень неприятны и их хочется отложить ?", correct_answer: "Лягушки", incorrect_answers: ["Тайм-менеджмент","Лягушки","Слоны",]},
+{category: "Тайм", type: "multiple", difficulty: "easy", question: " «…» – это мелкие задачи, на решение которых не требуется много сил и времени, но которые очень неприятны и их хочется отложить ?", correct_answer: "Лягушки", incorrect_answers: ["Тайм-менеджмент","Задача","Слоны",]},
 
 {category: "Тайм", type: "multiple", difficulty: "easy", question: " … – это представление информации, которое позволяет увидеть всю совокупность и взаимосвязь элементов и дает возможность эффективно принимать решения?", correct_answer: "Обзор задач", incorrect_answers: ["Тайм-менеджмент","Лягушки","релевантность",]},
 
